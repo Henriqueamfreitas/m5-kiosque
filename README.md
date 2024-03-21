@@ -1,97 +1,72 @@
-# M5 - Kopa do Mundo
+<h1> M5 - Kiosque </h1>
 
-## Preparando ambiente para execução dos testes
-### Procedimentos para rodar os testes da tarefa 1
-1. Faça a instalação das bibliotecas de teste:
-```shell
-pip install pytest-testdox pytest-django
-```
-2. Use o comando abaixo para rodar os testes referentes à tarefa 1:
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_1/
-```
----
-### Procedimentos para rodar os testes a partir da tarefa 2
-1. Verifique se os pacotes pytest, pytest-testdox e/ou pytest-django estão instalados globalmente em seu sistema:
-```shell
-pip list
-```
-2. Caso eles apareçam na listagem, rode os comandos abaixo para realizar a desinstalação:
+<h2> Como rodar os testes localmente </h2>
+
+<h3> Preparação do ambiente <h3>
+
+<p>Instalar o pacote <strong>pytest-testdox</strong>:</p>
 
 ```shell
-pip uninstall pytest pytest-testdox pytest-django -y
-```
-3. Após isso, crie seu ambiente virtual:
-```shell
-python -m venv venv
+pip install pytest-testdox
 ```
 
-4. Ative seu ambiente virtual:
+<p>Rodar os testes referentes a cada tarefa isoladamente:</p>
 
 ```shell
-# Linux e Mac:
-source venv/bin/activate
-
-# Windows (PowerShell):
-.\venv\Scripts\activate
-
-# Windows (GitBash):
-source venv/Scripts/activate
+pytest --testdox -vvs caminho/para/o/modulo/da/tarefa
 ```
 
-
-5. Instale as bibliotecas necessárias:
-
-```shell
-pip install pytest-testdox pytest-django
-```
-
-6. Como, a partir da tarefa 2, você utilizará Django, é necessário criar um arquivo bem importante: **pytest.ini**. Crie-o na raiz do projeto e adicione dentro dele o seguindo texto:
-```python
-[pytest]
-DJANGO_SETTINGS_MODULE = kopa_do_mundo.settings
-```
-
-Após isso, você pode executar os comandos abaixo para rodar os testes (inclusive da tarefa 1):
-- Tarefa 1
+Exemplo:
+<ul>
+<li>Tarefa 1</li>
 
 ```shell
 pytest --testdox -vvs tests/tarefas/tarefa_1/
 ```
 
-- Tarefa 2
+<li>Tarefa 2</li>
 
 ```shell
 pytest --testdox -vvs tests/tarefas/tarefa_2/
 ```
-
-- Tarefa 3
+<li>Tarefa 3</li>
 
 ```shell
 pytest --testdox -vvs tests/tarefas/tarefa_3/
 ```
 
-- Tarefa 4
+</ul>
+
+### **Importante!!**
+Caso esteja utilizando Windows e, ao rodar o comando `pytest --testdox` aparecer um erro de **cmdlet**, troque o inicio do comando pelo seguinte:
 
 ```shell
-pytest --testdox -vvs tests/tarefas/tarefa_4/
+python -m pytest --testdox
 ```
 
----
-
-Você também pode rodar cada método de teste isoladamente:
+<hr>
+<p>Você também pode rodar cada método de teste isoladamente:</p>
 
 ```shell
 pytest --testdox -vvs caminho/para/o/arquivo/de/teste::NomeDaClasse::nome_do_metodo_de_teste
 ```
 
-Exemplo: executar somente "test_object_representation"
+<p>Exemplo: executar somente "test_can_get_product_by_id".</p>
 
 ```shell
-pytest --testdox -vvs tests/tarefas/tarefa_1/test_model.py::TeamModelTest::test_object_representation
+pytest --testdox -vvs tests/tarefas/tarefa_1/test_get_product_by_id.py::TestGetProductById::test_can_get_product_by_id
+```
+<hr>
+<p>Os testes referentes as funcionalidades extras não são executados por padrão caso você não especifique o caminho até eles. Então caso você queira os executar, rode:</p>
+
+```shell
+pytest --testdox -vvs tests/tarefas/tarefa_3/extra_add_product.py
 ```
 
-Caso queira, também é possível rodar todos os testes de uma vez:
+## Rodando todos os testes
+
+Para rodar todos os testes da aplicação de uma vez, execute o seguinte comando no terminal (estando na raiz do projeto)
+
 ```shell
-pytest --testdox -vvs
+pytest --testdox
 ```
